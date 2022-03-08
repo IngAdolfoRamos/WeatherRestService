@@ -6,10 +6,14 @@
         
         <StackLayout>
 
-        <SearchBar x:Name="search"
+            <SearchBar x:Name="search"
                    SearchCommand="{Binding SearchCommand}"
                    SearchCommandParameter="{Binding Text, Source={x:Reference search}}" />
 
-        </StackLayout>
+            <Label Text="EL clima para hoy es:"/>
+            
+            <Label Text="{Binding Data.data[0].weather.description}"/>
+
+    </StackLayout>
 
 </ContentPage>

@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,9 +12,27 @@ using Xamarin.Forms;
 
 namespace WeatherRestService.ViewModels
 {
-    public class WeatherPageViewModel
+    public class WeatherPageViewModel : INotifyPropertyChanged
     {
-        public WeatherData Data { get; set; }
+        private WeatherData data;
+
+        #region PropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+        public WeatherData Data
+        {
+            get => data; set
+            {
+                data = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand SearchCommand { get; set; }
 
@@ -21,7 +41,7 @@ namespace WeatherRestService.ViewModels
         {
             SearchCommand = new Command(async (zipCode) =>
             {
-                await GetData("https://api.weatherbit.io/v2.0/current?postal_code=56900&key=372c879b4eb74ee7813e9c363e1d25c6");
+                await GetData("https://api.weatherbit.io/v2.0/current?postal_code=" + zipCode + "&key=372c879b4eb74ee7813e9c363e1d25c6");
             });
         }
 
