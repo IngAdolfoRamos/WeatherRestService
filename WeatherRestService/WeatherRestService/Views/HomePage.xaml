@@ -14,6 +14,9 @@
             
             <Label Text="{Binding Data.data[0].weather.description}"/>
 
+            <Image Source="{Binding Data.data[0].weather.icon, 
+                StringFormat='https://www.weatherbit.io/static/img/icons/{0}.png'}"/>
+
     </StackLayout>
 
 </ContentPage>
