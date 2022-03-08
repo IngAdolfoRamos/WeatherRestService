@@ -19,7 +19,7 @@ namespace WeatherRestService.ViewModels
 
         public WeatherPageViewModel()
         {
-            SearchCommand = new Command(async async =>
+            SearchCommand = new Command(async (zipCode) =>
             {
                 await GetData("https://api.weatherbit.io/v2.0/current?postal_code=56900&key=372c879b4eb74ee7813e9c363e1d25c6");
             });
