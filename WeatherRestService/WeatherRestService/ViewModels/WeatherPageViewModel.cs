@@ -41,7 +41,13 @@ namespace WeatherRestService.ViewModels
         {
             SearchCommand = new Command(async (zipCode) =>
             {
-                await GetData("https://api.weatherbit.io/v2.0/current?postal_code=" + zipCode + "&key=372c879b4eb74ee7813e9c363e1d25c6");
+
+                //var entrada = zipCode as string;
+                //var datos = entrada.Split(',');
+                //var lat = datos[0];
+                //var lon = datos[1];
+
+                await GetData("https://api.weatherbit.io/v2.0/current?postal_code=" + zipCode + "&lang=es&key=372c879b4eb74ee7813e9c363e1d25c6");
             });
         }
 
